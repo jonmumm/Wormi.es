@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  admin_name: MyString
+  admin_password: MyString
+  start_time: 2011-11-19 00:22:53
+  volume_id: MyString
+
+two:
+  admin_name: MyString
+  admin_password: MyString
+  start_time: 2011-11-19 00:22:53
+  volume_id: MyString
