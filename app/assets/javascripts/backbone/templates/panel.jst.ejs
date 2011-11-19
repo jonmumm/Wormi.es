@@ -1,0 +1,7 @@
+<% if (app.get('is_moderator')) { %>
+  <button class="grn_btn startShowBtn" disabled="disabled">Start Event</button>
+  <button class="red_btn stopShowBtn" disabled="disabled">Stop Event</button>
+<% } else { %>
+  <button class="grn_btn joinShowBtn" disabled="disabled">Join Event</button>
+  <button class="red_btn leaveShowBtn" disabled="disabled">Leave Event</button>
+<% } %>

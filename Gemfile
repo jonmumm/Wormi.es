@@ -25,6 +25,7 @@ end
 
 gem 'jquery-rails'
 gem 'rails-backbone'
+gem 'opentok'
 
 # Use unicorn as the web server
 # gem 'unicorn'

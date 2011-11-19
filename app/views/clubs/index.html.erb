@@ -2,24 +2,16 @@
 
 <table>
   <tr>
-    <th>Admin name</th>
-    <th>Admin password</th>
     <th>Start time</th>
     <th>Volume</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @clubs.each do |club| %>
   <tr>
-    <td><%= club.admin_name %></td>
-    <td><%= club.admin_password %></td>
     <td><%= club.start_time %></td>
     <td><%= club.volume_id %></td>
     <td><%= link_to 'Show', club %></td>
-    <td><%= link_to 'Edit', edit_club_path(club) %></td>
-    <td><%= link_to 'Destroy', club, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

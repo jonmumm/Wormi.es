@@ -1,23 +1,40 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "http://static.opentok.com/v0.91/js/TB.min.js" %>
+  <%= javascript_include_tag "clubs/show" %>
+  <script type="text/javascript">
+    window.app_config = {
+      club_id: <%= @club.id %>,
+      is_moderator: <%= @moderator %>,
+
+      session: TB.initSession("<%= @club.session_id %>"),
+
+      opentok_api_key: <%= APP_CONFIG['opentok_api_key'] %>,
+      opentok_token: "<%= @token %>",
+    }
+</script>
+
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Admin name:</b>
-  <%= @club.admin_name %>
+<b>Admin name:</b>
+<%= @club.admin_name %>
 </p>
 
 <p>
-  <b>Admin password:</b>
-  <%= @club.admin_password %>
+<b>Admin password:</b>
+<%= @club.admin_password %>
 </p>
 
 <p>
-  <b>Start time:</b>
-  <%= @club.start_time %>
+<b>Start time:</b>
+<%= @club.start_time %>
 </p>
 
 <p>
-  <b>Volume:</b>
-  <%= @club.volume_id %>
+<b>Volume:</b>
+<%= @club.volume_id %>
 </p>
 
 

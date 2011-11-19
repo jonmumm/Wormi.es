@@ -1,6 +1,15 @@
 Wormies::Application.routes.draw do
-  root :to => "clubs#index"
+
+  if Rails.env.production?
+    root :to => "home#launch"
+  else
+    root :to => "home#index"
+  end
+
+  match 'launch' => "home#launch"
+
   resources :clubs
+  match 'clubs/:id/admin' => 'clubs#admin'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

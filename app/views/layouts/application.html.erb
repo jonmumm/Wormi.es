@@ -4,11 +4,32 @@
   <title>Wormies</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+
+  <div class="wrapper">
+
+    <div class="header">
+      <%= image_tag "wormies.png" %>
+      <h2>Face to face online book clubs.</h2>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <div class="push"></div>
+
+  </div>
+
+  <div class="footer">
+    <div class="container">
+      <%= image_tag "wormies.png" %>
+    </div>
+  </div>
 
 </body>
 </html>

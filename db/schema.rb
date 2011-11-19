@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119082253) do
+ActiveRecord::Schema.define(:version => 20111119192251) do
 
   create_table "clubs", :force => true do |t|
     t.string   "admin_name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111119082253) do
     t.string   "volume_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "session_id"
   end
 
 end

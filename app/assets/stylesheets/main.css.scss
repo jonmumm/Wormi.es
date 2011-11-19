@@ -1,0 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+
+html, body {
+  height: 100%
+}
+
+body {
+  background: #e8e8e2;
+}
+
+.header {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+
+  img {
+    margin-top: 30px;
+  }
+
+  h2 {
+    margin-top: -30px;
+  }
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.footer, .push {
+  height: 60px;
+}
+
+.footer {
+  img {
+    margin-top: 8px;
+    height: 44px;
+  }
+}

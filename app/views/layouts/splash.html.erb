@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wormies</title>
+  <%= stylesheet_link_tag    "reset" %>
+  <%= javascript_include_tag "application" %>
+  <%= yield :head %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= yield %>
+
+</body>
+</html>

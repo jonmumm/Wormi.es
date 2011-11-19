@@ -1,4 +1,10 @@
+require 'opentok'
+
 class ClubsController < ApplicationController
+
+  before_filter :authenticate, :only => [:admin]
+  before_filter :init_opentok, :only => [:show, :admin]
+
   # GET /clubs
   # GET /clubs.json
   def index
@@ -14,9 +20,23 @@ class ClubsController < ApplicationController
   # GET /clubs/1.json
   def show
     @club = Club.find(params[:id])
+    @moderator = false
+    @token = generate_token OpenTok::RoleConstants::PUBLISHER
 
     respond_to do |format|
       format.html # show.html.erb
+      format.json { render :json => @club }
+    end
+  end
+
+
+  def admin
+    @club = Club.find(params[:id])
+    @moderator = true
+    @token = generate_token OpenTok::RoleConstants::MODERATOR
+
+    respond_to do |format|
+      format.html { render :action => "show" }
       format.json { render :json => @club }
     end
   end
@@ -79,5 +99,24 @@ class ClubsController < ApplicationController
       format.html { redirect_to clubs_url }
       format.json { head :ok }
     end
+  end
+
+  private
+  def init_opentok
+    @opentok = OpenTok::OpenTokSDK.new APP_CONFIG['opentok_api_key'], APP_CONFIG['opentok_api_secret'], :api_url => "https://api.opentok.com/hl"
+  end
+
+  def generate_token(role)
+    @opentok.generate_token :session_id => @club.session_id, :role => role
+  end
+
+  def authenticate
+    @club = Club.find(params[:id])
+
+    authenticate_or_request_with_http_basic do |username, password|
+      username == @club.admin_name && password == @club.admin_password
+    end
+
+    session[:user_id] = @club.admin_name
   end
 end
