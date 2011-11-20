@@ -1,6 +1,10 @@
 Wormies::Application.routes.draw do
 
-  root :to => "home#index"
+  if Rails.env.production?
+    root :to => "home#launch"
+  else
+    root :to => "home#index"
+  end
 
   match 'launch' => "home#launch"
 
