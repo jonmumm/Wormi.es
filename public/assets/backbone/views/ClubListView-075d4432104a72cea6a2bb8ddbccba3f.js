@@ -1,0 +1,1 @@
+Wormies.Views.ClubListView=Backbone.View.extend({initialize:function(){return this.collection.bind("add",$.proxy(this.onClubAdd,this))},onClubAdd:function(a,b){var c,d;return c=$(this.make("li")),d=new Wormies.Views.ClubView({el:c,model:a}),c.appendTo(this.el)}})

@@ -1,9 +1,13 @@
 <% content_for :head do %>
+  <%= stylesheet_link_tag "clubs" %>
   <%= javascript_include_tag "http://static.opentok.com/v0.91/js/TB.min.js" %>
+  <%= javascript_include_tag "http://twitter.github.com/bootstrap/1.3.0/bootstrap-modal.js" %>
   <%= javascript_include_tag "clubs/show" %>
   <script type="text/javascript">
+
+
     window.app_config = {
-      club_id: <%= @club.id %>,
+      club: <%= @club.to_json.html_safe %>,
       is_moderator: <%= @moderator %>,
 
       session: TB.initSession("<%= @club.session_id %>"),
@@ -12,31 +16,17 @@
       opentok_token: "<%= @token %>",
     }
 </script>
-
 <% end %>
 
-<p id="notice"><%= notice %></p>
+<div class="meeting-head">
+  <div class="row">
+    <div class="span11 club media-grid"></div>
+    <div class="span5 panel"></div>
+  </div>
+</div>
 
-<p>
-<b>Admin name:</b>
-<%= @club.admin_name %>
-</p>
-
-<p>
-<b>Admin password:</b>
-<%= @club.admin_password %>
-</p>
-
-<p>
-<b>Start time:</b>
-<%= @club.start_time %>
-</p>
-
-<p>
-<b>Volume:</b>
-<%= @club.volume_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_club_path(@club) %> |
-<%= link_to 'Back', clubs_path %>
+<% if @moderator %>
+  <div class="stage moderator"></div>
+<% else %>
+  <div class="stage non-moderator"></div>
+<% end %>

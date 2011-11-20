@@ -1,0 +1,1 @@
+Wormies.Models.Club=Backbone.Model.extend({initialize:function(){return $.ajax({url:"https://www.googleapis.com/books/v1/volumes/"+this.get("volume_id"),data:{key:"AIzaSyD5a1RmDzOb8csAUwc29uZhF7jdsL48yYI"},dataType:"jsonp",success:$.proxy(this.onGetVolume,this)})},onGetVolume:function(a){return this.set({volume:a})}})

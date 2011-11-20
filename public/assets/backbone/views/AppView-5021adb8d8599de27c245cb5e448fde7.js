@@ -1,0 +1,1 @@
+Wormies.Views.AppView=Backbone.View.extend({template:JST["backbone/templates/app"],render:function(){var a,b,c;return a=new Wormies.Views.ConnectModalView,a.render(),b=new Wormies.Views.PanelView({el:$(".panel")}),b.render(),c=new Wormies.Views.StageView({el:$(".stage"),collection:app.get("participants")})}})

@@ -14,12 +14,14 @@ Wormies.Collections.ParticipantCollection = Backbone.Collection.extend
 
   onStartShow: ->
     @add new Wormies.Models.Participant
+      state: "publish"
 
   onStopShow: ->
     #
 
   onJoinShow: ->
     @add new Wormies.Models.Participant
+      state: "publish"
 
   onLeaveShow: ->
     #
@@ -42,12 +44,6 @@ Wormies.Collections.ParticipantCollection = Backbone.Collection.extend
 
   addParticipant: (stream) ->
     if stream.connection.connectionId isnt app.get('session').connection.connectionId
-      event = app.get('events').get(stream.streamId)
-      if event?
-        state = event.get 'state'
-      else
-        state = 'queue'
       @add new Wormies.Models.Participant
         id: stream.streamId
         stream: stream
-        state: state

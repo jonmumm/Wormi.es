@@ -1,7 +1,11 @@
 <% if (app.get('is_moderator')) { %>
-  <button class="grn_btn startShowBtn" disabled="disabled">Start Event</button>
-  <button class="red_btn stopShowBtn" disabled="disabled">Stop Event</button>
+  <button class="btn danger stopShowBtn" disabled="disabled">Stop Meeting</button>
+  <button class="btn success startShowBtn" disabled="disabled">Start Meeting</button>
 <% } else { %>
-  <button class="grn_btn joinShowBtn" disabled="disabled">Join Event</button>
-  <button class="red_btn leaveShowBtn" disabled="disabled">Leave Event</button>
+  <button class="btn danger leaveShowBtn" disabled="disabled">Leave Meeting</button>
+  <button class="btn success joinShowBtn" disabled="disabled">Join Meeting</button>
+<% } %>
+<p class="shift">Press <strong>shift</strong> to talk.</p>
+<% if (!app.get('is_moderator')) { %>
+  <p class="admin">Did you create this meeting? Admin page <a href="/clubs/<%= app.get('club').id  %>/admin">here.
 <% } %>

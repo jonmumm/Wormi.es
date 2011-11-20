@@ -1,0 +1,1 @@
+Wormies.Views.ClubView=Backbone.View.extend({initialize:function(){return this.el.hide(),this.model.get("volume")!=null?this.render():this.model.bind("change",$.proxy(this.render,this))},template:JST["backbone/templates/club"],render:function(){return this.el.html(this.template(this.model.toJSON())),this.el.show("fast")}})

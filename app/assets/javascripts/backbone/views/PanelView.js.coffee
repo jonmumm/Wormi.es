@@ -1,6 +1,8 @@
 Wormies.Views.PanelView = Backbone.View.extend
   initialize: ->
     app.get('session').addEventListener 'sessionConnected', @onSessionConnect
+    app.get('session').addEventListener 'streamCreated', $.proxy @onStreamCreate, @
+    app.get('session').addEventListener 'streamPropertyChanged', $.proxy @onStreamPropertyChange, @
 
   template: JST["backbone/templates/panel"]
 
@@ -10,6 +12,19 @@ Wormies.Views.PanelView = Backbone.View.extend
   onSessionConnect: ->
     $(".startShowBtn").removeAttr 'disabled'
     $(".joinShowBtn").removeAttr 'disabled'
+
+  onStreamPropertyChange: (event) ->
+    if event.changedProperty is "hasAudio"
+      if event.newValue
+        $(".shift", @el).html "<strong>You are talking.</strong>"
+      else
+        $(".shift", @el).html "Press <strong>shift</strong> to talk."
+
+  onStreamCreate: (event) ->
+    connectionId = event.streams[0].connection.connectionId
+    if app.get('session').connection.connectionId is connectionId
+      $(".admin", @el).fadeOut('fast')
+      $(".shift", @el).delay(2000).fadeIn('fast')
 
   events:
     "click .startShowBtn": "onStartShowClick"

@@ -3,6 +3,8 @@ Wormies.Views.ParticipantView = Backbone.View.extend
     @model.bind 'change:id', $.proxy @onIdChange, @
     @model.bind 'change:state', $.proxy @onStateChange, @
 
+    app.get('session').addEventListener 'streamPropertyChanged', $.proxy @onStreamPropertyChange, @
+
   template: JST["backbone/templates/participant"]
 
   events:
@@ -23,9 +25,24 @@ Wormies.Views.ParticipantView = Backbone.View.extend
     @el.attr 'id', model.id
 
   onStateChange: (model, collection) ->
-    @el.removeClass()
+    @el.removeClass('publish')
     @el.addClass(model.get('state'))
-    @setAudioSubscribe()
+
+  onKeyDown: (event) ->
+    if event.keyCode is 16
+      @model.get('publisher').publishAudio true
+
+  onKeyUp: (event) ->
+    if event.keyCode is 16
+      @model.get('publisher').publishAudio false
+
+  onStreamPropertyChange: (event) ->
+    if event.stream.streamId is @model.id
+      if event.changedProperty is "hasAudio"
+        if event.newValue
+          @el.addClass("hasAudio")
+        else
+          @el.removeClass("hasAudio")
 
   render: ->
     @el.html @template
@@ -34,14 +51,13 @@ Wormies.Views.ParticipantView = Backbone.View.extend
       subscriber = app.get('session').subscribe @model.get('stream'), "videoContainer"
       @model.set
         subscriber: subscriber
-      @setAudioSubscribe()
     else
-      app.get('session').publish "videoContainer"
+      publisher = app.get('session').publish "videoContainer"
+        publishAudio: false
+      @model.set
+        publisher: publisher
 
-  setAudioSubscribe: ->
-    subscriber = @model.get 'subscriber'
-    if subscriber?
-      if @model.get('state') is 'guest' or @model.get('state') is 'host'
-        @model.get('subscriber').subscribeToAudio(true)
-      else
-        @model.get('subscriber').subscribeToAudio(false)
+      @el.addClass 'me'
+
+      $(document).bind 'keydown', $.proxy @onKeyDown, @
+      $(document).bind 'keyup', $.proxy @onKeyUp, @
