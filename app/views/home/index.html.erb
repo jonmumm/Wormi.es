@@ -1,2 +1,28 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= content_for :head do %>
+  <%= stylesheet_link_tag "home" %>
+  <script type="text/javascript">
+    var clubs = new Wormies.Collections.ClubCollection();
+
+
+    $(document).ready(function() {
+
+      var club_list = new Wormies.Views.ClubListView({
+        "el": $(".club-list"),
+        "collection": clubs
+      });
+
+      clubs.add(<%= @clubs.to_json.html_safe %>);
+    });
+
+    // Add each model to collection
+
+    // Create and render view
+
+  </script>
+<% end %>
+
+
+<div class="row">
+  <h3>Upcoming meetings</h3>
+  <ul class="club-list media-grid"></ul>
+</div>

@@ -1,3 +1,58 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h3 {
+  font-size: 32px;
+  font-weight: 100;
+  line-height: 64px;
+}
+
+.club-list {
+  margin-top: 4px;
+}
+
+.club-list li {
+  display: block;
+  clear: both;
+
+  border-top: 1px solid rgba(0,0,0,.1);
+  padding-top: 20px;
+
+  .club-info {
+    margin-left: 176px;
+
+    h3 {
+      font-size: 44px;
+      padding-top: 6px;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 100;
+      span {
+        font-weight: 200;
+      }
+    }
+
+    .enter {
+      margin-bottom: 20px;
+
+      a {
+        margin: 0;
+        padding: 0;
+        border: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        float: none;
+      }
+    }
+
+  }
+
+  .clear {
+    clear: both;
+  }
+}
+
