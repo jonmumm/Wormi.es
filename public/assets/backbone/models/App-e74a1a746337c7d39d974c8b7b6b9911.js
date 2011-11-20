@@ -1,1 +1,0 @@
-Wormies.Models.App=Backbone.Model.extend({setup:function(){return this.set({participants:new Wormies.Collections.ParticipantCollection,events:new Wormies.Collections.EventManager})},start:function(){return this.get("session").connect(this.get("opentok_api_key"),this.get("opentok_token"))}})
