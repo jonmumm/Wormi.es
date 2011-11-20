@@ -21,6 +21,7 @@ Wormies::Application.configure do
   config.assets.digest = true
 
   config.assets.precompile << "*.js"
+  config.assets.precompile << "*.css"
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
