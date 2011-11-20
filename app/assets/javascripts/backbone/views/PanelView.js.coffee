@@ -14,11 +14,13 @@ Wormies.Views.PanelView = Backbone.View.extend
     $(".joinShowBtn").removeAttr 'disabled'
 
   onStreamPropertyChange: (event) ->
-    if event.changedProperty is "hasAudio"
-      if event.newValue
-        $(".shift", @el).html "<strong>You are talking.</strong>"
-      else
-        $(".shift", @el).html "Press <strong>shift</strong> to talk."
+    connectionId = event.stream.connection.connectionId
+    if connectionId is app.get('session').connection.connectionId
+      if event.changedProperty is "hasAudio"
+        if event.newValue
+          $(".shift", @el).html "<strong>You are talking.</strong>"
+        else
+          $(".shift", @el).html "Press <strong>shift</strong> to talk."
 
   onStreamCreate: (event) ->
     connectionId = event.streams[0].connection.connectionId
