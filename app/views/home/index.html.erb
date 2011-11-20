@@ -23,6 +23,12 @@
 
 
 <div class="row">
-  <h3>Upcoming meetings</h3>
-  <ul class="club-list media-grid"></ul>
+  <div class="span9 upcoming-meetings">
+    <h3>Upcoming meetings</h3>
+    <ul class="club-list media-grid"></ul>
+  </div>
+  <div class="span7 sidebar">
+    <p>Host live, face to face book clubs.<br />It's easy and free.</p>
+    <%= link_to "Create a club »" , new_club_path, :class => "create btn primary large" %>
+  </div>
 </div>

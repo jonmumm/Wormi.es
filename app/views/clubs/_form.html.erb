@@ -1,5 +1,6 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "token-input" %>
+  <%= stylesheet_link_tag "forms" %>
   <%= javascript_include_tag "jquery.tokeninput" %>
   <%= javascript_include_tag "clubs/form" %>
 <% end %>
@@ -17,23 +18,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :admin_name %><br />
-    <%= f.text_field :admin_name %>
+  <div class="clearfix">
+    <%= f.label :volume_id, "Book" %>
+    <div class="input">
+      <%= f.text_field :volume_id %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :admin_password %><br />
-    <%= f.password_field :admin_password %>
+  <div class="clearfix">
+    <%= f.label :admin_name, "Your Name" %>
+    <div class="input">
+      <%= f.text_field :admin_name %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br />
-    <%= f.datetime_select :start_time %>
+  <div class="clearfix">
+    <%= f.label :admin_password, "Password" %>
+    <div class="input">
+      <%= f.password_field :admin_password %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :volume_id %><br />
-    <%= f.text_field :volume_id %>
+  <div class="clearfix">
+    <%= f.label :start_time %>
+    <div class="input">
+      <%= f.datetime_select :start_time, { :default => 2.days.from_now, :use_short_month => true, :minute_step => 15, :start_year => Time.now.year }, { :class => "start_time" } %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="clearfix actions">
+    <div class="input">
+      <%= f.submit :class => "btn primary" %>
+    </div>
   </div>
 <% end %>

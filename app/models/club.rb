@@ -5,6 +5,10 @@ class Club < ActiveRecord::Base
 
   before_create :generate_session
 
+  scope :future, lambda { where("start_time > ?", Time.now ) }
+
+  default_scope order("start_time ASC").future
+
   private
     def generate_session
       opentok = OpenTok::OpenTokSDK.new APP_CONFIG['opentok_api_key'], APP_CONFIG['opentok_api_secret'], :api_url => "https://api.opentok.com/hl"

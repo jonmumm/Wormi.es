@@ -1,5 +1,6 @@
 Wormies.Views.ClubView = Backbone.View.extend
   initialize: ->
+    @el.hide()
     if @model.get('volume')?
       @render()
     else
@@ -9,4 +10,4 @@ Wormies.Views.ClubView = Backbone.View.extend
 
   render: ->
     @el.html @template @model.toJSON()
-    console.log @model.toJSON()
+    @el.show('fast')
